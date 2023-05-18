@@ -71,16 +71,16 @@ app.get("/posts", async (req, res) => {
   res.json(food);
 });
 
-app.get("/posts/:id", async (req, res) => {
-  const {id} = req.params;
-  const singlePost = await postModel.findById(id);
-  res.send(singlePost);
-});
 // app.get("/posts/:id", async (req, res) => {
-//   const id = req.params.id;
+//   const {id} = req.params;
 //   const singlePost = await postModel.findById(id);
-//   res.json({ singlePost: singlePost });
+//   res.send(singlePost);
 // });
+app.get("/posts/:id", async (req, res) => {
+  const id = req.params.id;
+  const singlePost = await postModel.findById(id);
+  res.json({ singlePost: singlePost });
+});
 
 app.listen(PORT, () => {
   console.log(`backend server has been served on ${PORT}`);
