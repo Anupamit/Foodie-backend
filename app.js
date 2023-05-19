@@ -12,8 +12,9 @@ app.use(express.json());
 //cross origin resource Sharing
 app.use(cors());
 
-const dbUrl = "mongodb://localhost:27017/foodblog";
+// const dbUrl = "mongodb://localhost:27017/foodblog";
 // const dbUrl = "mongodb://127.0.0.1:27017/foodblog"
+const dbUrl = "mongodb+srv://anupamit011:@cluster0.zcfnlvf.mongodb.net/?retryWrites=true&w=majority"
 
 mongoose
   .connect(dbUrl)
@@ -69,6 +70,10 @@ app.post("/addfood", async (req, res) => {
 app.get("/posts", async (req, res) => {
   const food = await postModel.find();
   res.json(food);
+});
+app.get("/users", async (req, res) => {
+  const aboutuser = await UserModel.find();
+  res.json(aboutuser);
 });
 
 // app.get("/posts/:id", async (req, res) => {
